@@ -1,9 +1,8 @@
 // ToufAI/app/camera.js
 
 import React, { useRef, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity, Alert, NativeModules, NativeEventEmitter, findNodeHandle, Image } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Alert, NativeModules, NativeEventEmitter, findNodeHandle, Image, requireNativeComponent } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { requireNativeComponent } from 'react-native';
 
 // Get the native component and its manager
 const NativeCameraView = requireNativeComponent('CameraView');

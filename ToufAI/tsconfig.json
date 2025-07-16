@@ -1,27 +1,24 @@
 {
   "compilerOptions": {
-    // --- Core TypeScript and JavaScript Settings ---
-    "target": "esnext",             // Compile to a modern ECMAScript version
-    "module": "commonjs",           // Use the standard module system for Node.js
-    "lib": ["esnext"],              // Include modern ECMAScript library features
-    "allowJs": true,                // Allow JavaScript files to be compiled
-    "jsx": "react-native",          // Process JSX for React Native
-    "noEmit": true,                 // Don't output files; Babel handles transpilation
-    "isolatedModules": true,        // Ensure each file can be transpiled independently
-    "skipLibCheck": true,           // Skip type checking of declaration files in node_modules
-
-    // --- Strictness and Code Quality ---
-    "strict": true,                 // Enable all strict type-checking options
-
-    // --- Module Resolution ---
-    "moduleResolution": "node",     // How to resolve module imports
-    "resolveJsonModule": true,      // Allow importing .json files
-    "esModuleInterop": true,        // Enables compatibility with CommonJS modules
-
-    // --- Path Aliases ---
-    "baseUrl": ".",                 // The base directory for module resolution
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": [
+      "esnext"
+    ],
+    "allowJs": true,
+    "jsx": "react-native",
+    "noEmit": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]               // Defines the "@/" alias for cleaner imports
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
@@ -32,5 +29,6 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }
