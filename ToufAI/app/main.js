@@ -1,6 +1,7 @@
 import React from "react";
 import {
   SafeAreaView,
+  Button, // Add Button for testing
   ScrollView,
   View,
   Text,
@@ -8,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useRouter } from "expo-router";
+
 
 export default function MainScreen() {
   const router = useRouter();
@@ -123,6 +125,7 @@ export default function MainScreen() {
           )
         )}
 
+        {/* Test Button for Segmentation (Temporary) */}
         {/* Bottom Nav Bar */}
         <View
           style={{
