@@ -1,0 +1,40 @@
+# Podfile for ToufAI
+#
+# This file specifies the native iOS dependencies (pods) for the project.
+# It's used by CocoaPods to install and manage these libraries.
+
+# Set the platform and version for iOS
+platform :ios, '13.0'
+
+# Ignore all warnings from all pods
+inhibit_all_warnings!
+
+target 'ToufAI' do
+  # This is the main target for your application.
+
+  # --- Core React Native Pods ---
+  # These are the essential dependencies required by React Native.
+  # Note: The exact paths might need adjustment based on your project structure.
+  pod 'React-Core', :path => '../node_modules/react-native/'
+  pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
+  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/Animation'
+  pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
+  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
+  pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
+  pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
+  pod 'React-RCTSettings', :path => '../node_modules/react-native/Libraries/Settings'
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
+  pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
+  
+  # --- Third-Party Libraries (Pods) ---
+  pod 'React-hermes', :path => '../node_modules/react-native/sdks/hermes'
+  pod 'React-Codegen', :path => '../node_modules/react-native/ReactCommon/react-native-codegen'
+  pod 'RCT-Folly', :path => '../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec'
+  pod 'glog', :path => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+
+  # --- Required ML Kits / SDKs ---
+  # These are the dependencies needed for the on-device machine learning features.
+  pod 'GoogleMLKit/FaceDetection', '~> 4.0.0'
+  pod 'TensorFlowLiteSwift', '~> 2.10'
+
+end
