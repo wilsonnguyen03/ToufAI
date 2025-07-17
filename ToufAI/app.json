@@ -29,6 +29,13 @@
       "expo-router",
       "expo-font",
       "expo-web-browser"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "ed3ebcce-d7a1-4d5f-a352-feb047931cbe"
+      }
+    },
+    "owner": "monarch343"
   }
 }
