@@ -1,0 +1,9 @@
+Flask==2.2.2
+torch==1.13.1
+transformers==4.25.1
+Pillow==9.4.0
+gunicorn==20.1.0
+pymongo[srv]==4.3.3
+Flask-PyJWT==3.1.0
+werkzeug==2.2.2
+python-dotenv==0.21.0 # Library to read .env files
