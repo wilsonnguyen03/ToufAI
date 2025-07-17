@@ -1,162 +1,158 @@
-import React from "react";
+import React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
   View,
   Text,
-  Image,
+  TextInput,
+  StyleSheet,
   TouchableOpacity,
-} from "react-native";
-import { useRouter } from "expo-router";
+  ScrollView,
+  Image,
+  SafeAreaView,
+} from 'react-native';
+import { Ionicons, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
-export default function MainScreen() {
+export default function HomeScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-      <ScrollView style={{ flex: 1, backgroundColor: "#2C2C2C" }}>
-        {/* Top Status Bar */}
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: 12,
-            marginBottom: 21,
-            marginLeft: 38,
-          }}
-        >
-          <View style={{ alignItems: "center", marginRight: 213 }}>
-            <Text
-              style={{
-                color: "#000000",
-                fontSize: 16,
-                fontWeight: "bold",
-                width: 32,
-              }}
-            >
-              9:52
-            </Text>
-            <Text
-              style={{
-                color: "#FFFFFF",
-                fontSize: 16,
-                fontWeight: "bold",
-                width: 32,
-              }}
-            >
-              9:52
-            </Text>
-          </View>
-          <View style={{ alignItems: "center" }}>
-            <Image
-              source={{
-                uri: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/pkf9oma3_expires_30_days.png",
-              }}
-              resizeMode="stretch"
-              style={{ width: 80, height: 17 }}
-            />
-            <Image
-              source={{
-                uri: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/a3p0lvvr_expires_30_days.png",
-              }}
-              resizeMode="stretch"
-              style={{ width: 80, height: 17 }}
-            />
-          </View>
-        </View>
+    <SafeAreaView style={styles.container}>
+      {/* ───── Title and Search Bar ───── */}
+      <Text style={styles.title}>
+        Touf<Text style={{ color: '#FFA500' }}>AI</Text> 👨🏽‍🦲
+      </Text>
+      <View style={styles.searchContainer}>
+        <Ionicons name="search" size={20} color="#999" />
+        <TextInput placeholder="Search..." placeholderTextColor="#999" style={styles.searchInput} />
+      </View>
 
-        {/* Search Bar */}
-        <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            backgroundColor: "#D9D9D9",
-            borderRadius: 36,
-            paddingVertical: 5,
-            paddingHorizontal: 25,
-            marginBottom: 58,
-            marginHorizontal: 40,
-          }}
-          onPress={() => alert("Search pressed!")}
-        >
-          <Text style={{ color: "#000000", fontSize: 16, flex: 1 }}>
-            Search....
-          </Text>
-          <Image
-            source={{
-              uri: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/ufvkhry1_expires_30_days.png",
-            }}
-            resizeMode="stretch"
-            style={{ width: 35, height: 35 }}
-          />
-        </TouchableOpacity>
-
-        {/* Tiles Section */}
-        {[["Diet", "Style"], ["Haircare", "Hair health"], ["Doctor’s Advice", "Face shape"]].map(
-          (pair, i) => (
-            <View
-              key={i}
-              style={{
-                flexDirection: "row",
-                alignItems: "flex-start",
-                marginBottom: 30,
-                marginHorizontal: 30,
-              }}
-            >
-              {pair.map((label, j) => (
-                <View
-                  key={j}
-                  style={{
-                    flex: 1,
-                    alignItems: "center",
-                    backgroundColor: "#D9D9D9",
-                    borderRadius: 26,
-                    paddingTop: 80 + j,
-                    paddingBottom: 30 + j * 3,
-                    marginRight: j === 0 ? 35 : 0,
-                  }}
-                >
-                  <Text style={{ color: "#000000", fontSize: 16 }}>{label}</Text>
-                </View>
-              ))}
-            </View>
-          )
-        )}
-
-        {/* Bottom Nav Bar */}
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            backgroundColor: "#848484",
-            paddingVertical: 19,
-            paddingLeft: 45,
-            paddingRight: 34,
-          }}
-        >
-          {["d6o32ihe", "lvc7ixcb", "2imvjcv9", "u4hpo4rr"].map((id, i) => {
-            const icon = (
-              <Image
-                source={{
-                  uri: `https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/${id}_expires_30_days.png`,
-                }}
-                resizeMode="stretch"
-                style={{ width: 40 - (i === 0 ? 6 : 0), height: 40 }}
-              />
-            );
-
-            // Navigate on second icon press
-            return i === 1 ? (
-              <TouchableOpacity key={i} onPress={() => router.push("/camera")}>
-                {icon}
-              </TouchableOpacity>
-            ) : (
-              <View key={i}>{icon}</View>
-            );
-          })}
-        </View>
+      {/* ───── Grid Tiles ───── */}
+      <ScrollView contentContainerStyle={styles.grid}>
+        <GridButton icon="shopping-bag" label="Diet" iconColor="green" />
+        <GridButton icon="cut" label="Style" />
+        <GridButton icon="shower" label="Haircare" />
+        <GridButton icon="water" label="Hair health" iconType="MaterialCommunityIcons" iconColor="#4C8CF5" />
+        <GridButton icon="user-md" label="Doctor's Advice" iconColor="red" />
+        <GridButton icon="face-recognition" label="Face shape" iconType="MaterialCommunityIcons" />
       </ScrollView>
+
+      {/* ───── Bottom Navigation Bar ───── */}
+      <View style={styles.bottomBar}>
+        {['d6o32ihe', 'lvc7ixcb', '2imvjcv9', 'u4hpo4rr'].map((id, i) => {
+          const isActive = i === 0; // This is the Home screen
+          const isWhite = i === 2;
+
+          const icon = (
+            <Image
+              source={{
+                uri: `https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/${id}_expires_30_days.png`,
+              }}
+              resizeMode="stretch"
+              style={{
+                width: 34,
+                height: 34,
+                tintColor: isActive ? '#FFD700' : isWhite ? '#FFFFFF' : undefined,
+              }}
+            />
+          );
+
+          const routes = ['/main', '/camera', '/progression', '/setting'];
+
+          return (
+            <TouchableOpacity key={i} onPress={() => router.push(routes[i])}>
+              {icon}
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </SafeAreaView>
   );
 }
+
+function GridButton({
+  icon,
+  label,
+  iconType = 'FontAwesome5',
+  iconColor = '#000',
+}: {
+  icon: string;
+  label: string;
+  iconType?: 'FontAwesome5' | 'MaterialCommunityIcons';
+  iconColor?: string;
+}) {
+  const router = useRouter();
+  const IconComponent =
+    iconType === 'MaterialCommunityIcons' ? MaterialCommunityIcons : FontAwesome5;
+
+  return (
+    <TouchableOpacity
+      style={styles.gridButton}
+      onPress={() => router.push({ pathname: '/info', params: { topic: label } })}
+    >
+      <IconComponent name={icon} size={24} color={iconColor} />
+      <Text style={styles.gridLabel}>{label}</Text>
+    </TouchableOpacity>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#1e1e1e',
+    paddingTop: 50,
+    paddingHorizontal: 16,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#2c2c2c',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  searchInput: {
+    marginLeft: 8,
+    flex: 1,
+    color: '#fff',
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 10,
+    paddingBottom: 80, // leave space for nav bar
+  },
+  gridButton: {
+    width: '47%',
+    backgroundColor: '#e0e0e0',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 20,
+    marginBottom: 12,
+  },
+  gridLabel: {
+    marginTop: 10,
+    fontWeight: '600',
+  },
+  bottomBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#2C2C2C',
+    paddingVertical: 19,
+    paddingLeft: 45,
+    paddingRight: 34,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+});

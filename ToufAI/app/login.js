@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   SafeAreaView,
   View,
-  ScrollView,
   Text,
   Image,
   ImageBackground,
@@ -22,27 +21,12 @@ export default function Login() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Status Bar Mock */}
-        <View style={styles.topBar}>
-          <Text style={styles.timeText}>9:52</Text>
+      <View style={styles.centerContent}>
+        {/* Logo Only */}
+        <View style={styles.logoContainer}>
           <Image
-            source={{
-              uri: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/jlj4erog_expires_30_days.png"
-            }}
-            resizeMode="stretch"
-            style={styles.topIcon}
-          />
-        </View>
-
-        {/* Title & Logo */}
-        <View style={styles.logoRow}>
-          <Text style={styles.appTitle}>ToufAI</Text>
-          <Image
-            source={{
-              uri: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/n8p8icae_expires_30_days.png"
-            }}
-            resizeMode="stretch"
+            source={require("../assets/images/logo.png")}
+            resizeMode="contain"
             style={styles.logoImage}
           />
         </View>
@@ -54,9 +38,9 @@ export default function Login() {
               uri: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/lshdivwl_expires_30_days.png"
             }}
             resizeMode="stretch"
-            style={styles.guestBtn}
+            style={styles.buttonBackground}
           >
-            <Text style={styles.guestText}>Guest Sign in</Text>
+            <Text style={styles.buttonText}>Guest Sign in</Text>
           </ImageBackground>
         </TouchableOpacity>
 
@@ -100,20 +84,24 @@ export default function Login() {
                 uri: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/WtJE5xb9RQ/75tnhb2g_expires_30_days.png"
               }}
               resizeMode="stretch"
-              style={styles.loginBtn}
+              style={styles.buttonBackground}
             >
-              <Text style={styles.loginText}>Login</Text>
+              <Text style={styles.buttonText}>Login</Text>
             </ImageBackground>
           </TouchableOpacity>
 
           {/* Sign Up */}
           <TouchableOpacity onPress={() => router.push("/signup")}>
             <Text style={styles.signupText}>
-              Don't have an account? Sign up
+              Don't have an account? 
+              <Text style={styles.forgotPassword}>
+              Sign up
             </Text>
+            </Text>
+
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -123,51 +111,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#2C2C2C",
   },
-  scroll: {
-    paddingHorizontal: 40,
-    paddingBottom: 40,
-  },
-  topBar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 12,
-    marginBottom: 60,
-    paddingHorizontal: 10,
-  },
-  timeText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  topIcon: {
-    width: 80,
-    height: 17,
-  },
-  logoRow: {
-    flexDirection: "row",
-    alignItems: "center",
+  centerContent: {
+    flex: 1,
     justifyContent: "center",
+    paddingHorizontal: 40,
+  },
+  logoContainer: {
+    alignItems: "center",
     marginBottom: 38,
   },
-  appTitle: {
-    color: "#FFFFFF",
-    fontSize: 48,
-    fontWeight: "bold",
-    marginRight: 12,
-  },
   logoImage: {
-    width: 46,
-    height: 46,
-  },
-  guestBtn: {
-    alignItems: "center",
-    paddingVertical: 19,
-    marginBottom: 29,
-  },
-  guestText: {
-    color: "#FFFFFF",
-    fontSize: 24,
-    fontWeight: "bold",
+    width: 330,
+    height: 100,
   },
   formContainer: {
     alignItems: "center",
@@ -213,16 +168,17 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginBottom: 20,
   },
-  loginBtn: {
+  buttonBackground: {
+    width: "100%",
     alignItems: "center",
     paddingVertical: 19,
     marginBottom: 20,
-    width: "100%",
   },
-  loginText: {
+  buttonText: {
     color: "#FFFFFF",
     fontSize: 24,
     fontWeight: "bold",
+
   },
   signupText: {
     color: "#FFFFFF",
